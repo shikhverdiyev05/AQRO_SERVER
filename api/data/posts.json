@@ -1,0 +1,40 @@
+[
+    {
+      "id": "post_501",
+      "author": { "id": "usr_001", "fullName": "Elvin Məmmədov", "avatar": "https://aqro-server.vercel.app/uploads/avatars/usr_001.jpg" },
+      "content": "Bu il buğda məhsulu çox yaxşı alındı, suvarma sisteminin təsiri böyük oldu!",
+      "images": [
+        "https://aqro-server.vercel.app/uploads/posts/501_1.jpg"
+      ],
+      "likesCount": 24,
+      "commentsCount": 2,
+      "isLikedByMe": false,
+      "isSavedByMe": true,
+      "createdAt": "2026-06-15T14:00:00Z"
+    },
+    {
+      "id": "post_502",
+      "author": { "id": "usr_002", "fullName": "Aygün Hüseynova", "avatar": "https://aqro-server.vercel.app/uploads/avatars/usr_002.jpg" },
+      "content": "Üzvi gübrədən istifadə edərək bağımızda pomidor məhsuldarlığını 30% artırdıq.",
+      "images": [],
+      "likesCount": 11,
+      "commentsCount": 1,
+      "isLikedByMe": true,
+      "isSavedByMe": false,
+      "createdAt": "2026-06-20T09:15:00Z"
+    },
+    {
+      "id": "post_503",
+      "author": { "id": "usr_003", "fullName": "Rəşad Quliyev", "avatar": "https://aqro-server.vercel.app/uploads/avatars/usr_003.jpg" },
+      "content": "Arıçılıqla məşğul olanlar üçün məsləhət: pətəkləri yaz aylarında müntəzəm yoxlayın.",
+      "images": [
+        "https://aqro-server.vercel.app/uploads/posts/503_1.jpg",
+        "https://aqro-server.vercel.app/uploads/posts/503_2.jpg"
+      ],
+      "likesCount": 40,
+      "commentsCount": 3,
+      "isLikedByMe": false,
+      "isSavedByMe": false,
+      "createdAt": "2026-06-29T17:45:00Z"
+    }
+]

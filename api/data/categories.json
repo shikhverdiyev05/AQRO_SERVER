@@ -1,0 +1,42 @@
+[
+    {
+      "id": "cat_texnika",
+      "name": "Kənd təsərrüfatı texnikaları",
+      "appliesTo": ["sale", "rent"],
+      "subcategories": []
+    },
+    {
+      "id": "cat_agrar",
+      "name": "Aqrar məhsullar və vasitələr",
+      "appliesTo": ["sale"],
+      "subcategories": [
+        { "id": "sub_gubreler", "name": "Gübrələr" },
+        { "id": "sub_bagcilig", "name": "Bağçılıq məhsulları" },
+        { "id": "sub_ariciliq", "name": "Arıçılıq məhsulları" }
+      ]
+    },
+    {
+      "id": "cat_bitkiler",
+      "name": "Bitkilər",
+      "appliesTo": ["sale"],
+      "subcategories": [
+        { "id": "sub_agac_tingleri", "name": "Ağac tingləri" },
+        { "id": "sub_guller", "name": "Güllər" },
+        { "id": "sub_kol_bitkileri", "name": "Kol bitkiləri" },
+        { "id": "sub_taxil_bitkileri", "name": "Taxıl bitkiləri" },
+        { "id": "sub_toxumlar", "name": "Toxumlar" }
+      ]
+    },
+    {
+      "id": "cat_torpaq",
+      "name": "Torpaq və əkin sahələri",
+      "appliesTo": ["sale", "rent"],
+      "subcategories": []
+    },
+    {
+      "id": "cat_bag",
+      "name": "Bağ sahələri",
+      "appliesTo": ["sale", "rent"],
+      "subcategories": []
+    }
+]
