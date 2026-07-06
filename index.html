@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON API</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #ededed; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .container { max-width: 600px; width: 100%; padding: 40px 20px; }
+    h1 { font-size: 2rem; margin-bottom: 8px; }
+    .subtitle { color: #888; margin-bottom: 32px; }
+    .endpoints { display: flex; flex-direction: column; gap: 12px; }
+    .endpoint { background: #161616; border: 1px solid #2a2a2a; border-radius: 8px; padding: 16px; display: flex; align-items: center; justify-content: space-between; transition: border-color 0.2s; cursor: pointer; text-decoration: none; color: inherit; }
+    .endpoint:hover { border-color: #555; }
+    .endpoint-name { font-weight: 600; font-size: 1.1rem; }
+    .endpoint-url { color: #888; font-family: monospace; font-size: 0.85rem; }
+    .method { background: #1a3a2a; color: #4ade80; font-size: 0.75rem; font-weight: 700; padding: 4px 8px; border-radius: 4px; margin-right: 12px; }
+    .left { display: flex; align-items: center; }
+    .loading { color: #555; text-align: center; padding: 20px; }
+    .error { color: #f87171; text-align: center; padding: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>JSON API</h1>
+    <p class="subtitle">Mövcud endpointlər</p>
+    <div class="endpoints" id="endpoints">
+      <div class="loading">Yüklənir...</div>
+    </div>
+  </div>
+  <script>
+    fetch('/api')
+      .then(r => r.json())
+      .then(data => {
+        const el = document.getElementById('endpoints');
+        if (!data.endpoints.length) {
+          el.innerHTML = '<div class="loading">Heç bir endpoint tapılmadı</div>';
+          return;
+        }
+        el.innerHTML = data.endpoints.map(ep => `
+          <a class="endpoint" href="${ep.url}" target="_blank">
+            <div class="left">
+              <span class="method">GET</span>
+              <span class="endpoint-name">${ep.name}</span>
+            </div>
+            <span class="endpoint-url">${ep.url}</span>
+          </a>
+        `).join('');
+      })
+      .catch(() => {
+        document.getElementById('endpoints').innerHTML = '<div class="error">API-yə qoşulmaq mümkün olmadı</div>';
+      });
+  </script>
+</body>
+</html>
