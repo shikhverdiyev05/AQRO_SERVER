@@ -1,0 +1,63 @@
+{
+  "message": "testData.json ile uyumlu media depolama strukturu",
+  "baseUrl": "/uploads",
+  "productionBaseUrl": "https://aqro-server.vercel.app/uploads",
+  "collections": [
+    {
+      "name": "avatars",
+      "path": "/uploads/avatars",
+      "purpose": "Istifadeci profil sekilleri",
+      "files": [
+        "/uploads/avatars/usr_001.jpg",
+        "/uploads/avatars/usr_002.jpg",
+        "/uploads/avatars/usr_003.jpg"
+      ]
+    },
+    {
+      "name": "listings",
+      "path": "/uploads/listings",
+      "purpose": "Elan sekilleri",
+      "files": [
+        "/uploads/listings/1001_1.jpg",
+        "/uploads/listings/1001_2.jpg",
+        "/uploads/listings/1002_1.jpg",
+        "/uploads/listings/1003_1.jpg",
+        "/uploads/listings/1004_1.jpg",
+        "/uploads/listings/1005_1.jpg",
+        "/uploads/listings/1006_1.jpg"
+      ]
+    },
+    {
+      "name": "posts",
+      "path": "/uploads/posts",
+      "purpose": "Post sekilleri",
+      "files": [
+        "/uploads/posts/501_1.jpg",
+        "/uploads/posts/503_1.jpg",
+        "/uploads/posts/503_2.jpg"
+      ]
+    },
+    {
+      "name": "team",
+      "path": "/uploads/team",
+      "purpose": "Komanda uzvleri sekilleri",
+      "files": [
+        "/uploads/team/1.jpg",
+        "/uploads/team/2.jpg",
+        "/uploads/team/3.jpg"
+      ]
+    }
+  ],
+  "endpoints": [
+    "/api/categories",
+    "/api/users",
+    "/api/listings",
+    "/api/posts",
+    "/api/comments",
+    "/api/balanceTransactions",
+    "/api/basket",
+    "/api/faq",
+    "/api/about",
+    "/api/contactInfo"
+  ]
+}

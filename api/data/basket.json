@@ -1,6 +1,12 @@
 {
-    "usr_001": [
-      { "listingId": "lst_1002", "addedAt": "2026-07-01T10:00:00Z" },
-      { "listingId": "lst_1006", "addedAt": "2026-07-02T11:30:00Z" }
-    ]
+  "usr_001": [
+    {
+      "listingId": "lst_1002",
+      "addedAt": "2026-07-01T10:00:00Z"
+    },
+    {
+      "listingId": "lst_1006",
+      "addedAt": "2026-07-02T11:30:00Z"
+    }
+  ]
 }

@@ -1,10 +1,22 @@
 {
-    "team": [
-      { "name": "Elvin Məmmədov", "role": "Həmtəsisçi / CEO", "avatar": "https://aqro-server.vercel.app/uploads/team/1.jpg" },
-      { "name": "Aygün Hüseynova", "role": "Həmtəsisçi / Məhsul meneceri", "avatar": "https://aqro-server.vercel.app/uploads/team/2.jpg" },
-      { "name": "Rəşad Quliyev", "role": "Texniki direktor", "avatar": "https://aqro-server.vercel.app/uploads/team/3.jpg" }
-    ],
-    "mission": "Aqrar sektorda fəaliyyət göstərən fermerləri, sahibkarları və istehlakçıları vahid rəqəmsal platformada birləşdirərək, kənd təsərrüfatı məhsul və xidmətlərinin əlçatanlığını artırmaq.",
-    "startupInfo": "AQRO 2026-cı ildə yerli aqrar bazarın rəqəmsallaşma ehtiyacına cavab olaraq yaradılmış startup layihəsidir.",
-    "platformInfo": "Platforma elan yerləşdirmə (satış/icarə), icma paylaşımları (postlar) və istifadəçilər arası birbaşa əlaqə imkanlarını özündə birləşdirir."
+  "team": [
+    {
+      "name": "Elvin Məmmədov",
+      "role": "Həmtəsisçi / CEO",
+      "avatar": "https://aqro-server.vercel.app/uploads/team/1.jpg"
+    },
+    {
+      "name": "Aygün Hüseynova",
+      "role": "Həmtəsisçi / Məhsul meneceri",
+      "avatar": "https://aqro-server.vercel.app/uploads/team/2.jpg"
+    },
+    {
+      "name": "Rəşad Quliyev",
+      "role": "Texniki direktor",
+      "avatar": "https://aqro-server.vercel.app/uploads/team/3.jpg"
+    }
+  ],
+  "mission": "Aqrar sektorda fəaliyyət göstərən fermerləri, sahibkarları və istehlakçıları vahid rəqəmsal platformada birləşdirərək, kənd təsərrüfatı məhsul və xidmətlərinin əlçatanlığını artırmaq.",
+  "startupInfo": "AQRO 2026-cı ildə yerli aqrar bazarın rəqəmsallaşma ehtiyacına cavab olaraq yaradılmış startup layihəsidir.",
+  "platformInfo": "Platforma elan yerləşdirmə (satış/icarə), icma paylaşımları (postlar) və istifadəçilər arası birbaşa əlaqə imkanlarını özündə birləşdirir."
 }

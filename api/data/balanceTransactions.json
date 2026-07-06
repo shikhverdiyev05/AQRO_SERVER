@@ -1,0 +1,18 @@
+[
+  {
+    "id": "tx_1",
+    "userId": "usr_001",
+    "type": "topup",
+    "amount": 100,
+    "method": "card",
+    "createdAt": "2026-05-01T10:00:00Z"
+  },
+  {
+    "id": "tx_2",
+    "userId": "usr_001",
+    "type": "topup",
+    "amount": 25.5,
+    "method": "card",
+    "createdAt": "2026-06-01T10:00:00Z"
+  }
+]

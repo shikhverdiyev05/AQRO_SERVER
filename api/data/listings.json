@@ -1,107 +1,125 @@
 [
-    {
-      "id": "lst_1001",
-      "title": "John Deere Traktor 2019",
-      "description": "İşlək vəziyyətdə, az işlənib, yeni təkərlər taxılıb.",
-      "type": "sale",
-      "category": "cat_texnika",
-      "subcategory": null,
-      "price": 45000,
-      "currency": "AZN",
-      "region": "Quba",
-      "images": [
-        "https://aqro-server.vercel.app/uploads/listings/1001_1.jpg",
-        "https://aqro-server.vercel.app/uploads/listings/1001_2.jpg"
-      ],
-      "owner": { "id": "usr_001", "fullName": "Elvin Məmmədov" },
-      "status": "active",
-      "createdAt": "2026-06-10T09:30:00Z"
+  {
+    "id": "lst_1001",
+    "title": "John Deere Traktor 2019",
+    "description": "İşlək vəziyyətdə, az işlənib, yeni təkərlər taxılıb.",
+    "type": "sale",
+    "category": "cat_texnika",
+    "subcategory": null,
+    "price": 45000,
+    "currency": "AZN",
+    "region": "Quba",
+    "images": [
+      "https://aqro-server.vercel.app/uploads/listings/1001_1.jpg",
+      "https://aqro-server.vercel.app/uploads/listings/1001_2.jpg"
+    ],
+    "owner": {
+      "id": "usr_001",
+      "fullName": "Elvin Məmmədov"
     },
-    {
-      "id": "lst_1002",
-      "title": "Üzvi Gübrə (50kg kisə)",
-      "description": "Tam üzvi tərkibli, bağ və tarla üçün uyğundur.",
-      "type": "sale",
-      "category": "cat_agrar",
-      "subcategory": "sub_gubreler",
-      "price": 18,
-      "currency": "AZN",
-      "region": "Qusar",
-      "images": [
-        "https://aqro-server.vercel.app/uploads/listings/1002_1.jpg"
-      ],
-      "owner": { "id": "usr_002", "fullName": "Aygün Hüseynova" },
-      "status": "active",
-      "createdAt": "2026-06-18T11:00:00Z"
+    "status": "active",
+    "createdAt": "2026-06-10T09:30:00Z"
+  },
+  {
+    "id": "lst_1002",
+    "title": "Üzvi Gübrə (50kg kisə)",
+    "description": "Tam üzvi tərkibli, bağ və tarla üçün uyğundur.",
+    "type": "sale",
+    "category": "cat_agrar",
+    "subcategory": "sub_gubreler",
+    "price": 18,
+    "currency": "AZN",
+    "region": "Qusar",
+    "images": [
+      "https://aqro-server.vercel.app/uploads/listings/1002_1.jpg"
+    ],
+    "owner": {
+      "id": "usr_002",
+      "fullName": "Aygün Hüseynova"
     },
-    {
-      "id": "lst_1003",
-      "title": "Alma Ağacı Tingi (Şəfa sortu)",
-      "description": "2 yaşlı ting, peyvəndlənmiş, məhsuldar sort.",
-      "type": "sale",
-      "category": "cat_bitkiler",
-      "subcategory": "sub_agac_tingleri",
-      "price": 12,
-      "currency": "AZN",
-      "region": "Şəki",
-      "images": [
-        "https://aqro-server.vercel.app/uploads/listings/1003_1.jpg"
-      ],
-      "owner": { "id": "usr_003", "fullName": "Rəşad Quliyev" },
-      "status": "active",
-      "createdAt": "2026-06-20T15:45:00Z"
+    "status": "active",
+    "createdAt": "2026-06-18T11:00:00Z"
+  },
+  {
+    "id": "lst_1003",
+    "title": "Alma Ağacı Tingi (Şəfa sortu)",
+    "description": "2 yaşlı ting, peyvəndlənmiş, məhsuldar sort.",
+    "type": "sale",
+    "category": "cat_bitkiler",
+    "subcategory": "sub_agac_tingleri",
+    "price": 12,
+    "currency": "AZN",
+    "region": "Şəki",
+    "images": [
+      "https://aqro-server.vercel.app/uploads/listings/1003_1.jpg"
+    ],
+    "owner": {
+      "id": "usr_003",
+      "fullName": "Rəşad Quliyev"
     },
-    {
-      "id": "lst_1004",
-      "title": "5 Hektar Əkin Sahəsi (İcarə)",
-      "description": "Suvarma sistemi mövcuddur, taxıl əkini üçün əlverişlidir.",
-      "type": "rent",
-      "category": "cat_torpaq",
-      "subcategory": null,
-      "price": 800,
-      "currency": "AZN",
-      "priceUnit": "ay",
-      "region": "Qusar",
-      "images": [
-        "https://aqro-server.vercel.app/uploads/listings/1004_1.jpg"
-      ],
-      "owner": { "id": "usr_002", "fullName": "Aygün Hüseynova" },
-      "status": "active",
-      "createdAt": "2026-06-22T08:00:00Z"
+    "status": "active",
+    "createdAt": "2026-06-20T15:45:00Z"
+  },
+  {
+    "id": "lst_1004",
+    "title": "5 Hektar Əkin Sahəsi (İcarə)",
+    "description": "Suvarma sistemi mövcuddur, taxıl əkini üçün əlverişlidir.",
+    "type": "rent",
+    "category": "cat_torpaq",
+    "subcategory": null,
+    "price": 800,
+    "currency": "AZN",
+    "priceUnit": "ay",
+    "region": "Qusar",
+    "images": [
+      "https://aqro-server.vercel.app/uploads/listings/1004_1.jpg"
+    ],
+    "owner": {
+      "id": "usr_002",
+      "fullName": "Aygün Hüseynova"
     },
-    {
-      "id": "lst_1005",
-      "title": "Case IH Kombayn (İcarə)",
-      "description": "Buğda biçini üçün icarəyə verilir, operatorla birlikdə.",
-      "type": "rent",
-      "category": "cat_texnika",
-      "subcategory": null,
-      "price": 250,
-      "currency": "AZN",
-      "priceUnit": "gün",
-      "region": "Ağdam",
-      "images": [
-        "https://aqro-server.vercel.app/uploads/listings/1005_1.jpg"
-      ],
-      "owner": { "id": "usr_001", "fullName": "Elvin Məmmədov" },
-      "status": "active",
-      "createdAt": "2026-06-25T10:10:00Z"
+    "status": "active",
+    "createdAt": "2026-06-22T08:00:00Z"
+  },
+  {
+    "id": "lst_1005",
+    "title": "Case IH Kombayn (İcarə)",
+    "description": "Buğda biçini üçün icarəyə verilir, operatorla birlikdə.",
+    "type": "rent",
+    "category": "cat_texnika",
+    "subcategory": null,
+    "price": 250,
+    "currency": "AZN",
+    "priceUnit": "gün",
+    "region": "Ağdam",
+    "images": [
+      "https://aqro-server.vercel.app/uploads/listings/1005_1.jpg"
+    ],
+    "owner": {
+      "id": "usr_001",
+      "fullName": "Elvin Məmmədov"
     },
-    {
-      "id": "lst_1006",
-      "title": "Bal Arısı Ailəsi (Pətəklə birlikdə)",
-      "description": "Sağlam arı ailəsi, yeni pətəkdə, məhsuldar.",
-      "type": "sale",
-      "category": "cat_agrar",
-      "subcategory": "sub_ariciliq",
-      "price": 150,
-      "currency": "AZN",
-      "region": "Quba",
-      "images": [
-        "https://aqro-server.vercel.app/uploads/listings/1006_1.jpg"
-      ],
-      "owner": { "id": "usr_003", "fullName": "Rəşad Quliyev" },
-      "status": "active",
-      "createdAt": "2026-06-28T13:30:00Z"
-    }
+    "status": "active",
+    "createdAt": "2026-06-25T10:10:00Z"
+  },
+  {
+    "id": "lst_1006",
+    "title": "Bal Arısı Ailəsi (Pətəklə birlikdə)",
+    "description": "Sağlam arı ailəsi, yeni pətəkdə, məhsuldar.",
+    "type": "sale",
+    "category": "cat_agrar",
+    "subcategory": "sub_ariciliq",
+    "price": 150,
+    "currency": "AZN",
+    "region": "Quba",
+    "images": [
+      "https://aqro-server.vercel.app/uploads/listings/1006_1.jpg"
+    ],
+    "owner": {
+      "id": "usr_003",
+      "fullName": "Rəşad Quliyev"
+    },
+    "status": "active",
+    "createdAt": "2026-06-28T13:30:00Z"
+  }
 ]

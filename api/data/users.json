@@ -1,32 +1,32 @@
 [
-    {
-      "id": "usr_001",
-      "fullName": "Elvin Məmmədov",
-      "email": "elvin.memmedov@example.com",
-      "phone": "+994501234567",
-      "avatar": "https://aqro-server.vercel.app/uploads/avatars/usr_001.jpg",
-      "region": "Quba",
-      "balance": 125.50,
-      "createdAt": "2026-02-01T10:00:00Z"
-    },
-    {
-      "id": "usr_002",
-      "fullName": "Aygün Hüseynova",
-      "email": "aygun.huseynova@example.com",
-      "phone": "+994551112233",
-      "avatar": "https://aqro-server.vercel.app/uploads/avatars/usr_002.jpg",
-      "region": "Qusar",
-      "balance": 0,
-      "createdAt": "2026-03-14T12:20:00Z"
-    },
-    {
-      "id": "usr_003",
-      "fullName": "Rəşad Quliyev",
-      "email": "reshad.quliyev@example.com",
-      "phone": "+994701239988",
-      "avatar": "https://aqro-server.vercel.app/uploads/avatars/usr_003.jpg",
-      "region": "Şəki",
-      "balance": 320.00,
-      "createdAt": "2026-01-20T08:15:00Z"
-    }
+  {
+    "id": "usr_001",
+    "fullName": "Elvin Məmmədov",
+    "email": "elvin.memmedov@example.com",
+    "phone": "+994501234567",
+    "avatar": "https://aqro-server.vercel.app/uploads/avatars/usr_001.jpg",
+    "region": "Quba",
+    "balance": 125.5,
+    "createdAt": "2026-02-01T10:00:00Z"
+  },
+  {
+    "id": "usr_002",
+    "fullName": "Aygün Hüseynova",
+    "email": "aygun.huseynova@example.com",
+    "phone": "+994551112233",
+    "avatar": "https://aqro-server.vercel.app/uploads/avatars/usr_002.jpg",
+    "region": "Qusar",
+    "balance": 0,
+    "createdAt": "2026-03-14T12:20:00Z"
+  },
+  {
+    "id": "usr_003",
+    "fullName": "Rəşad Quliyev",
+    "email": "reshad.quliyev@example.com",
+    "phone": "+994701239988",
+    "avatar": "https://aqro-server.vercel.app/uploads/avatars/usr_003.jpg",
+    "region": "Şəki",
+    "balance": 320,
+    "createdAt": "2026-01-20T08:15:00Z"
+  }
 ]

@@ -1,22 +1,22 @@
 [
-    {
-      "id": "faq_1",
-      "question": "AQRO platformasında elan yerləşdirmək pulludurmu?",
-      "answer": "Standart elanlar pulsuzdur. Elanınızı önə çıxarmaq (VIP) istəyirsinizsə, balansınızdan ödəniş edə bilərsiniz."
-    },
-    {
-      "id": "faq_2",
-      "question": "İcarə elanı ilə satış elanı arasında fərq nədir?",
-      "answer": "Satış elanları mülkiyyətin tam verilməsini, icarə elanları isə müəyyən müddətə istifadə hüququnun verilməsini bildirir."
-    },
-    {
-      "id": "faq_3",
-      "question": "Balansımı necə artıra bilərəm?",
-      "answer": "Profil bölməsindəki 'Balans' hissəsindən bank kartı vasitəsilə balansınızı artıra bilərsiniz."
-    },
-    {
-      "id": "faq_4",
-      "question": "Postlarda paylaşdığım məlumatları kim görə bilər?",
-      "answer": "Bütün postlar ictimai profilə malikdir və bütün istifadəçilər tərəfindən görünə bilər."
-    }
-  ]
+  {
+    "id": "faq_1",
+    "question": "AQRO platformasında elan yerləşdirmək pulludurmu?",
+    "answer": "Standart elanlar pulsuzdur. Elanınızı önə çıxarmaq (VIP) istəyirsinizsə, balansınızdan ödəniş edə bilərsiniz."
+  },
+  {
+    "id": "faq_2",
+    "question": "İcarə elanı ilə satış elanı arasında fərq nədir?",
+    "answer": "Satış elanları mülkiyyətin tam verilməsini, icarə elanları isə müəyyən müddətə istifadə hüququnun verilməsini bildirir."
+  },
+  {
+    "id": "faq_3",
+    "question": "Balansımı necə artıra bilərəm?",
+    "answer": "Profil bölməsindəki 'Balans' hissəsindən bank kartı vasitəsilə balansınızı artıra bilərsiniz."
+  },
+  {
+    "id": "faq_4",
+    "question": "Postlarda paylaşdığım məlumatları kim görə bilər?",
+    "answer": "Bütün postlar ictimai profilə malikdir və bütün istifadəçilər tərəfindən görünə bilər."
+  }
+]
