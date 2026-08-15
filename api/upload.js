@@ -96,12 +96,12 @@ export default async function handler(req, res) {
   }
 
   const contentType = req.headers['content-type'] || '';
-  const isVercel = process.env.VERCEL === '1';
+  const isVercelProd = process.env.VERCEL_ENV === 'production' || process.env.VERCEL_ENV === 'preview';
 
   // Şəkli haraya saxla
   // - Vercel production: /tmp/aqro-uploads/ (session-daxili)
   // - Lokal dev: public/uploads/ (kalıcı)
-  const uploadsBase = isVercel
+  const uploadsBase = isVercelProd
     ? '/tmp/aqro-uploads'
     : join(__dirname, '..', 'public', 'uploads');
 

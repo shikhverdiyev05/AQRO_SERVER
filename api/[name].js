@@ -27,9 +27,9 @@ function setCORSHeaders(res) {
 
 // Məlumatı oxu: əvvəlcə /tmp cache, sonra bundled fayl
 function readData(name) {
-  const isVercel = process.env.VERCEL === '1';
+  const isVercelProd = process.env.VERCEL_ENV === 'production' || process.env.VERCEL_ENV === 'preview';
 
-  if (isVercel) {
+  if (isVercelProd) {
     const tmpPath = `${TMP_DIR}/${name}.json`;
     if (existsSync(tmpPath)) {
       return JSON.parse(readFileSync(tmpPath, 'utf-8'));
@@ -45,9 +45,9 @@ function readData(name) {
 //   - Vercel production-da → /tmp/aqro-data/ (session-daxili, kalıcı deyil)
 //   - Lokal dev-də → api/data/ (faylı birbaşa yenilə)
 function writeData(name, data) {
-  const isVercel = process.env.VERCEL === '1';
+  const isVercelProd = process.env.VERCEL_ENV === 'production' || process.env.VERCEL_ENV === 'preview';
 
-  if (isVercel) {
+  if (isVercelProd) {
     mkdirSync(TMP_DIR, { recursive: true });
     writeFileSync(`${TMP_DIR}/${name}.json`, JSON.stringify(data, null, 2), 'utf-8');
   } else {
