@@ -2,9 +2,18 @@ import { initializeApp, getApps, cert } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 
 const getFirebaseConfig = () => {
-  const privateKey = process.env.FIREBASE_PRIVATE_KEY
-    ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')
-    : undefined;
+  let privateKey = process.env.FIREBASE_PRIVATE_KEY;
+  
+  if (privateKey) {
+    // Bütün mümkün formatları emal et:
+    // Əgər dəyərin özündə " literal olaraq qalıbsa
+    privateKey = privateKey.replace(/^[`'"\x22]|[`'"\x22]$/g, '');
+    
+    // Əgər literal '\\n' olaraq qalıbsa, normal sətrə çevir
+    if (privateKey.includes('\\n')) {
+       privateKey = privateKey.replace(/\\n/g, '\n');
+    }
+  }
 
   return {
     projectId: process.env.FIREBASE_PROJECT_ID,

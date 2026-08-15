@@ -1,10 +1,4 @@
-import { readdirSync, existsSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-// ESM-də __dirname mövcud deyil — fileURLToPath ilə həll edirik
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { db } from './firebase.js';
 
 function setCORSHeaders(res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -13,31 +7,34 @@ function setCORSHeaders(res) {
   res.setHeader('Access-Control-Max-Age', '86400');
 }
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   setCORSHeaders(res);
 
-  // OPTIONS — CORS preflight
   if (req.method === 'OPTIONS') {
     return res.status(204).end();
   }
 
-  const dataDir = join(__dirname, 'data');
-
-  if (!existsSync(dataDir)) {
-    return res.status(500).json({ error: 'Data qovluğu tapılmadı' });
+  if (!db) {
+    return res.status(500).json({ error: 'Firebase qoşulması qurulmayıb.' });
   }
 
-  const files = readdirSync(dataDir).filter(f => f.endsWith('.json'));
+  try {
+    // Firestore-dakı bütün kolleksiyaları siyahıla
+    const collections = await db.listCollections();
+    
+    const endpoints = collections.map(col => ({
+      name: col.id,
+      url: `/api/${col.id}`,
+      methods: ['GET', 'POST', 'PUT', 'DELETE']
+    }));
 
-  const endpoints = files.map(f => ({
-    name: f.replace('.json', ''),
-    url: `/api/${f.replace('.json', '')}`,
-    methods: ['GET', 'POST', 'PUT', 'DELETE']
-  }));
-
-  return res.status(200).json({
-    message: 'AQRO JSON API — Mövcud endpointlər',
-    version: '2.0.0',
-    endpoints
-  });
+    return res.status(200).json({
+      message: 'AQRO JSON API — Mövcud endpointlər (Firebase Firestore)',
+      version: '3.0.0',
+      endpoints
+    });
+  } catch (error) {
+    console.error('Firestore Error:', error);
+    return res.status(500).json({ error: 'Daxili server xətası' });
+  }
 }
