@@ -1,32 +1,24 @@
 [
   {
-    "id": "usr_001",
-    "fullName": "Elvin Məmmədov",
-    "email": "elvin.memmedov@example.com",
-    "phone": "+994501234567",
-    "avatar": "https://aqro-server.vercel.app/uploads/avatars/usr_001.jpg",
+    "id": "usr-1",
+    "name": "Rəşad Qasımov",
+    "email": "fermer@aqrobazar.az",
+    "phone": "+994 50 123 45 67",
+    "userType": "farmer",
     "region": "Quba",
-    "balance": 125.5,
-    "createdAt": "2026-02-01T10:00:00Z"
+    "balance": "150.00 AZN",
+    "joinedDate": "İyul 2024",
+    "avatar": "https://aqro-server.vercel.app/uploads/avatars/usr_001.jpg"
   },
   {
-    "id": "usr_002",
-    "fullName": "Aygün Hüseynova",
-    "email": "aygun.huseynova@example.com",
-    "phone": "+994551112233",
-    "avatar": "https://aqro-server.vercel.app/uploads/avatars/usr_002.jpg",
-    "region": "Qusar",
-    "balance": 0,
-    "createdAt": "2026-03-14T12:20:00Z"
-  },
-  {
-    "id": "usr_003",
-    "fullName": "Rəşad Quliyev",
-    "email": "reshad.quliyev@example.com",
-    "phone": "+994701239988",
-    "avatar": "https://aqro-server.vercel.app/uploads/avatars/usr_003.jpg",
-    "region": "Şəki",
-    "balance": 320,
-    "createdAt": "2026-01-20T08:15:00Z"
+    "id": "usr-2",
+    "name": "Muğan Aqro MMC",
+    "email": "info@muganaqro.az",
+    "phone": "+994 50 333 99 11",
+    "userType": "company",
+    "region": "Ucar",
+    "balance": "1200.00 AZN",
+    "joinedDate": "Mart 2023",
+    "avatar": "https://aqro-server.vercel.app/uploads/avatars/usr_002.jpg"
   }
 ]

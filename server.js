@@ -85,8 +85,4 @@ server.listen(3000, () => {
     .filter(file => file.endsWith('.json'))
     .forEach(file => console.log(`  http://localhost:3000/api/${file.replace('.json', '')}`));
   console.log('Media (testData.json):');
-  console.log('  http://localhost:3000/uploads/avatars/usr_001.jpg');
-  console.log('  http://localhost:3000/uploads/listings/1001_1.jpg');
-  console.log('  http://localhost:3000/uploads/posts/501_1.jpg');
-  console.log('  http://localhost:3000/uploads/team/1.jpg');
 });
