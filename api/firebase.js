@@ -28,10 +28,14 @@ if (!getApps().length) {
   const config = getFirebaseConfig();
   
   if (config.projectId && config.privateKey && config.clientEmail) {
-    const app = initializeApp({
-      credential: cert(config),
-    });
-    db = getFirestore(app);
+    try {
+      const app = initializeApp({
+        credential: cert(config),
+      });
+      db = getFirestore(app);
+    } catch (e) {
+      console.error('Firebase xətası (Açar yalnışdır):', e.message);
+    }
   } else {
     console.warn('⚠️ Firebase konfiqurasiya məlumatları (Env vars) tapılmadı! Firebase-ə qoşulmur.');
   }
