@@ -1,21 +1,4 @@
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-// ESM-də __dirname mövcud deyil — fileURLToPath ilə həll edirik
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-// Vercel production-da /tmp yazılabilir, /api/data isə read-only-dir.
-// Strategiya:
-//   1. GET sorğusunda əvvəlcə /tmp cache-ini yoxla, yoxdursa bundled faylı oxu.
-//   2. POST/PUT/DELETE sorğularında /tmp-ə yaz ki, eyni serverless instance
-//      üzərində növbəti GET sorğusunda yenilənmiş data qayıtsın.
-//   (Qeyd: Vercel cold-start-dan sonra /tmp sıfırlanır — bu, stateless
-//    serverless-in məhdudiyyətidir. Kalıcı saxlama üçün xarici DB lazımdır.)
-
-const TMP_DIR = '/tmp/aqro-data';
-const DATA_DIR = join(__dirname, 'data');
+import { db } from './firebase.js';
 
 // CORS header-lərini bütün metodlar üçün tənlə
 function setCORSHeaders(res) {
@@ -23,37 +6,6 @@ function setCORSHeaders(res) {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
   res.setHeader('Access-Control-Max-Age', '86400');
-}
-
-// Məlumatı oxu: əvvəlcə /tmp cache, sonra bundled fayl
-function readData(name) {
-  const isVercelProd = process.env.VERCEL_ENV === 'production' || process.env.VERCEL_ENV === 'preview';
-
-  if (isVercelProd) {
-    const tmpPath = `${TMP_DIR}/${name}.json`;
-    if (existsSync(tmpPath)) {
-      return JSON.parse(readFileSync(tmpPath, 'utf-8'));
-    }
-  }
-
-  const bundledPath = join(DATA_DIR, `${name}.json`);
-  if (!existsSync(bundledPath)) return null;
-  return JSON.parse(readFileSync(bundledPath, 'utf-8'));
-}
-
-// Məlumatı yaz:
-//   - Vercel production-da → /tmp/aqro-data/ (session-daxili, kalıcı deyil)
-//   - Lokal dev-də → api/data/ (faylı birbaşa yenilə)
-function writeData(name, data) {
-  const isVercelProd = process.env.VERCEL_ENV === 'production' || process.env.VERCEL_ENV === 'preview';
-
-  if (isVercelProd) {
-    mkdirSync(TMP_DIR, { recursive: true });
-    writeFileSync(`${TMP_DIR}/${name}.json`, JSON.stringify(data, null, 2), 'utf-8');
-  } else {
-    const bundledPath = join(DATA_DIR, `${name}.json`);
-    writeFileSync(bundledPath, JSON.stringify(data, null, 2) + '\n', 'utf-8');
-  }
 }
 
 // Request body-ni JSON kimi oxu
@@ -78,105 +30,106 @@ export default async function handler(req, res) {
 
   setCORSHeaders(res);
 
-  // OPTIONS — CORS preflight sorğusu (browser-in POST/PUT/DELETE öncə göndərdiyi)
   if (method === 'OPTIONS') {
     return res.status(204).end();
   }
 
-  // Endpoint-in mövcudluğunu yoxla
-  const bundledPath = join(DATA_DIR, `${name}.json`);
-  if (!existsSync(bundledPath)) {
-    return res.status(404).json({ error: `Endpoint "${name}" tapılmadı` });
+  if (!db) {
+    return res.status(500).json({ error: 'Firebase qoşulması qurulmayıb. Environment Variable-ları yoxlayın.' });
   }
 
-  // ── GET ────────────────────────────────────────────────────────────────
-  if (method === 'GET') {
-    const data = readData(name);
-    res.setHeader('Cache-Control', 'no-store');
-    return res.status(200).json(data);
-  }
+  const collectionRef = db.collection(name);
 
-  // ── POST ───────────────────────────────────────────────────────────────
-  // Array: yeni element əlavə et
-  // Object: key-value birləşdir
-  if (method === 'POST') {
-    let body;
-    try { body = await parseBody(req); }
-    catch (e) { return res.status(400).json({ error: e.message }); }
-
-    const data = readData(name);
-
-    let updated;
-    if (Array.isArray(data)) {
-      if (!body.id) {
-        body.id = `${name.slice(0, 3)}-${Date.now()}`;
+  try {
+    // ── GET ────────────────────────────────────────────────────────────────
+    if (method === 'GET') {
+      const snapshot = await collectionRef.get();
+      
+      if (snapshot.empty) {
+         return res.status(200).json([]);
       }
-      updated = [...data, body];
-    } else if (data !== null && typeof data === 'object') {
-      updated = { ...data, ...body };
-    } else {
-      return res.status(422).json({ error: 'Bu endpoint POST-u dəstəkləmir' });
+
+      // Əgər kolleksiyada yalnız 1 sənəd varsa və adı "_default"-dursa, 
+      // deməli bu tək obyektdir (məs: media.json) və ya string massividir (regions.json)
+      if (snapshot.size === 1 && snapshot.docs[0].id === '_default') {
+         const data = snapshot.docs[0].data();
+         res.setHeader('Cache-Control', 'no-store');
+         
+         // String massividirsə (regions)
+         if (data.items && Array.isArray(data.items)) {
+             return res.status(200).json(data.items);
+         }
+         // Tək obyektdirsə
+         return res.status(200).json(data);
+      }
+
+      const docs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+      res.setHeader('Cache-Control', 'no-store');
+      return res.status(200).json(docs);
     }
 
-    writeData(name, updated);
-    return res.status(201).json({ success: true, data: body });
-  }
+    // ── POST ───────────────────────────────────────────────────────────────
+    if (method === 'POST') {
+      const body = await parseBody(req);
+      
+      // Mövcud tək obyekt (singleton) yoxlanışı
+      const defaultDoc = await collectionRef.doc('_default').get();
+      if (defaultDoc.exists) {
+         // Singleton-a əlavə etmək (məs: Array-dirsə)
+         const data = defaultDoc.data();
+         if (data.items && Array.isArray(data.items)) {
+            data.items.push(body); // Stringlər üçün
+            await collectionRef.doc('_default').set(data);
+            return res.status(201).json({ success: true, data: body });
+         } else {
+            // Obyektdirsə merge
+            await collectionRef.doc('_default').set(body, { merge: true });
+            return res.status(201).json({ success: true, data: body });
+         }
+      }
 
-  // ── PUT ────────────────────────────────────────────────────────────────
-  // Array: ?id=... və ya body.id ilə elementi tap, birləşdir
-  // Object: bütün obyekti yenilə (merge)
-  if (method === 'PUT') {
-    let body;
-    try { body = await parseBody(req); }
-    catch (e) { return res.status(400).json({ error: e.message }); }
+      const docId = body.id || `${name.slice(0, 3)}-${Date.now()}`;
+      const dataToSave = { ...body, id: docId };
+      
+      await collectionRef.doc(docId).set(dataToSave);
+      return res.status(201).json({ success: true, data: dataToSave });
+    }
 
-    const data = readData(name);
-
-    let updated;
-    if (Array.isArray(data)) {
+    // ── PUT ────────────────────────────────────────────────────────────────
+    if (method === 'PUT') {
+      const body = await parseBody(req);
       const id = queryId || body.id;
+      
+      const defaultDoc = await collectionRef.doc('_default').get();
+      if (defaultDoc.exists) {
+         // Tək obyektin PUT ilə yenilənməsi
+         await collectionRef.doc('_default').set(body, { merge: true });
+         return res.status(200).json({ success: true, data: body });
+      }
+
       if (!id) {
         return res.status(400).json({ error: 'PUT üçün id lazımdır: ?id=... və ya body-də "id" sahəsi' });
       }
-      const idx = data.findIndex(item => String(item.id) === String(id));
-      if (idx === -1) {
-        return res.status(404).json({ error: `id="${id}" olan element tapılmadı` });
+
+      await collectionRef.doc(id).set(body, { merge: true });
+      return res.status(200).json({ success: true, data: { ...body, id } });
+    }
+
+    // ── DELETE ─────────────────────────────────────────────────────────────
+    if (method === 'DELETE') {
+      const id = queryId;
+      if (!id) {
+        return res.status(400).json({ error: 'DELETE üçün ?id= parametri lazımdır' });
       }
-      updated = [...data];
-      updated[idx] = { ...data[idx], ...body, id: data[idx].id };
-    } else if (data !== null && typeof data === 'object') {
-      updated = { ...data, ...body };
-    } else {
-      return res.status(422).json({ error: 'Bu endpoint PUT-u dəstəkləmir' });
+
+      await collectionRef.doc(id).delete();
+      return res.status(200).json({ success: true, deleted: id });
     }
 
-    writeData(name, updated);
-    return res.status(200).json({ success: true, data: Array.isArray(updated) ? updated.find(i => String(i.id) === String(queryId || body.id)) : updated });
+    return res.status(405).json({ error: `${method} metodu dəstəklənmir` });
+  } catch (error) {
+    console.error('Firestore Error:', error);
+    return res.status(500).json({ error: 'Daxili server xətası' });
   }
-
-  // ── DELETE ─────────────────────────────────────────────────────────────
-  // Array-dan ?id=... ilə elementi sil
-  if (method === 'DELETE') {
-    const id = queryId;
-    if (!id) {
-      return res.status(400).json({ error: 'DELETE üçün ?id= parametri lazımdır' });
-    }
-
-    const data = readData(name);
-    if (!Array.isArray(data)) {
-      return res.status(422).json({ error: 'DELETE yalnız array tipli endpointlər üçün dəstəklənir' });
-    }
-
-    const before = data.length;
-    const updated = data.filter(item => String(item.id) !== String(id));
-
-    if (updated.length === before) {
-      return res.status(404).json({ error: `id="${id}" olan element tapılmadı` });
-    }
-
-    writeData(name, updated);
-    return res.status(200).json({ success: true, deleted: id });
-  }
-
-  return res.status(405).json({ error: `${method} metodu dəstəklənmir` });
 }

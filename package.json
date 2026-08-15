@@ -2,8 +2,13 @@
   "name": "vercel-json-api",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vercel dev",
     "sync": "node scripts/sync-from-testdata.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "firebase-admin": "^14.2.0"
   }
 }
